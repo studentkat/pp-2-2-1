@@ -19,8 +19,8 @@ public class User {
    @Column(name = "email")
    private String email;
 
-   @OneToOne(cascade = CascadeType.ALL)
-   @JoinColumn(name = "id")
+   @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+   @JoinColumn
    private Car car;
 
    public User() {}
@@ -31,6 +31,7 @@ public class User {
       this.lastName = lastName;
       this.email = email;
       this.car = car;
+      car.setUser(this);
    }
 
    public User(String firstName, String lastName, String email) {
